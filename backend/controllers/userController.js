@@ -7,16 +7,6 @@ const populateUserData = (user) => {
     workouts: user.workouts,
   };
 };
-const addUser = async (username, res) => {
-  const user = new User({ username: username });
-  console.log(user);
-  try {
-    const addedUser = await user.save();
-    res.send(populateUserData(addedUser));
-  } catch (e) {
-    throw new Error(`error adding user: ${e}`);
-  }
-};
 
 const loginUser = async (username, res) => {
   let user;

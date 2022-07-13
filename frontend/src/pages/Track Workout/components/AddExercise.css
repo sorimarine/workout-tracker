@@ -1,0 +1,20 @@
+.addExercise {
+  background-color: #dcd7c9;
+  border-radius: 5px;
+  color: #3f4e4f;
+}
+
+.addExercise button {
+  margin: 2px;
+  background-color: #2c3639;
+  color: #dcd7c9;
+}
+
+.addExercise__divider {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.addExercise__divider > * {
+  padding: 0 2px;
+}

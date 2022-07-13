@@ -1,0 +1,41 @@
+.addSet {
+  border-left: 1px dashed black;
+}
+
+.addSet__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.addSet__inputDiv {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: grid;
+  grid-template-columns: auto 35px auto;
+}
+.addSet__inputDiv > input {
+  padding: 0;
+  width: 30px;
+  text-align: center;
+}
+.addSet__inputDiv button {
+  width: 30px;
+}
+.addSet__inputDiv button:first-child {
+  justify-self: right;
+}
+button {
+  margin: 2px;
+}
+.addSet__newSet {
+  width: 75px;
+  height: 1.5rem;
+  justify-self: center;
+}
+
+.addSet__header {
+  text-decoration: underline;
+  margin: 0 auto;
+}

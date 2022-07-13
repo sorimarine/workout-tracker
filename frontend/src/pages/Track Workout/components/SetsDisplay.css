@@ -1,0 +1,15 @@
+.setsDisplay__header {
+  text-decoration: underline;
+  margin: 0 auto;
+}
+.exerciseDisplay .setsDisplay__header {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.exerciseDisplay .setsDisplay {
+  background-color: #dcd7c9;
+  color: #3f4e4f;
+  margin: 1px;
+}

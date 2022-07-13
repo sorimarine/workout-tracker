@@ -1,0 +1,11 @@
+.exercisesDisplay {
+  background-color: #dcd7c9;
+  border-radius: 5px;
+  color: #3f4e4f;
+  padding-bottom: 5px;
+}
+
+.exercisesDisplay__header {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}

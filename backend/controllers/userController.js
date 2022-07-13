@@ -30,7 +30,29 @@ const saveWorkout = async (data, res) => {
   }
 };
 
+// register new user
+const register = async (req, res) => {
+  const username = req.body.username;
+  if (!username) {
+    return res.status(400).send({ message: "username required" });
+  }
+  const userFound = await User.findOne({ username: req.body.username });
+  if (userFound) {
+    return res.status(409).send({ message: "username taken" });
+  }
+  try {
+    const newUser = new User({ username: username });
+    newUser.save();
+    return res.send(populateUserData(newUser));
+  } catch (e) {
+    return res
+      .status(500)
+      .send({ message: "error while saving user to database" });
+  }
+};
+
 module.exports = {
   loginUser,
   saveWorkout,
+  register,
 };

@@ -8,16 +8,6 @@ const populateUserData = (user) => {
   };
 };
 
-const loginUser = async (username, res) => {
-  let user;
-  try {
-    user = await User.findOne({ username: username });
-    res.send(populateUserData(user));
-  } catch (err) {
-    res.status(404).send("user not found");
-  }
-};
-
 const saveWorkout = async (data, res) => {
   try {
     const user = await User.findOne({ username: data.username });
@@ -30,7 +20,20 @@ const saveWorkout = async (data, res) => {
   }
 };
 
-// register new user
+// login and return user
+const login = async (req, res) => {
+  const username = req.body.username;
+  if (!username) {
+    return res.status(400).send({ message: "username required" });
+  }
+  const user = await User.findOne({ username: req.body.username });
+  if (!user) {
+    return res.status(404).send({ message: "user not found" });
+  }
+  return res.send(populateUserData(user));
+};
+
+// register and return new user
 const register = async (req, res) => {
   const username = req.body.username;
   if (!username) {
@@ -52,7 +55,7 @@ const register = async (req, res) => {
 };
 
 module.exports = {
-  loginUser,
+  login,
   saveWorkout,
   register,
 };

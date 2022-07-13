@@ -8,5 +8,8 @@ router.post("/saveWorkout", async (req, res) => {
 router.post("/register", async (req, res) => {
   userController.register(req, res);
 });
+router.post("/login", async (req, res) => {
+  userController.login(req, res);
+});
 
 module.exports = router;

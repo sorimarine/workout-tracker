@@ -1,15 +1,36 @@
 import TrackWorkout from "./pages/Track Workout/TrackWorkout";
-import { useState } from "react";
-import LoginLogout from "./pages/LoginLogout";
+import Header from "./pages/Header/Header";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import ProtectedRoute from "./shared/ProtectedRoute";
+import { CurrentUserProvider } from "./context/CurrentUserContext";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
   return (
-    <>
-      <LoginLogout user={user} setUser={setUser} />
-      {user && <TrackWorkout user={user} setUser={setUser} />}
-    </>
+    <Router>
+      <CurrentUserProvider>
+        <Header />
+        <Routes>
+          <Route index element={<Landing />} />
+          <Route path="landing" element={<Landing />} />
+          <Route
+            path="trackWorkout"
+            element={
+              <ProtectedRoute>
+                <TrackWorkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/landing" />} />
+        </Routes>
+      </CurrentUserProvider>
+    </Router>
   );
 };
 

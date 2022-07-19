@@ -1,8 +1,17 @@
+html {
+  display: table;
+  margin: auto;
+  width: 100%;
+}
+
 body {
   text-align: center;
   min-width: 360px;
   background-color: #2c3639;
   color: #dcd7c9;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 select {
@@ -18,4 +27,9 @@ button {
 
 a {
   color: #a27b5c;
+}
+
+.errorMsg {
+  color: coral;
+  font-style: italic;
 }

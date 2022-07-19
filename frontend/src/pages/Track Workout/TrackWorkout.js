@@ -1,21 +1,22 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useCurrentUser } from "../../context/CurrentUserContext";
 import DatePicker from "../../shared/DatePicker";
 import { includesIgnoreCase } from "../../shared/helper";
 import AddExercise from "./components/AddExercise";
-import ExerciseDisplay from "./components/ExerciseDisplay";
 import ExercisesDisplay from "./components/ExercisesDisplay";
 
-function TrackWorkout({ user, setUser }) {
+function TrackWorkout() {
   const [showAddExercise, setShowAddExercise] = useState(false);
   const [exercisesComplete, setExercisesComplete] = useState([]);
   const [date, setDate] = useState(new Date().toLocaleDateString("en-CA"));
-  const [exerciseList, setExerciseList] = useState(user.exerciseList);
+  const { currentUser, setCurrentUser } = useCurrentUser();
+  const [exerciseList, setExerciseList] = useState(currentUser.exerciseList);
 
   const setInitialStates = () => {
     setShowAddExercise(false);
     setExercisesComplete([]);
-    setExerciseList(user.exerciseList);
+    setExerciseList(currentUser.exerciseList);
   };
 
   const onAddExercise = () => {
@@ -42,12 +43,12 @@ function TrackWorkout({ user, setUser }) {
     };
     const updatedUser = await axios
       .post("/api/saveWorkout", {
-        username: user.username,
+        username: currentUser.username,
         exerciseList: exerciseList,
         workout: workout,
       })
       .then((results) => results.data);
-    setUser(updatedUser);
+    setCurrentUser(updatedUser);
     setInitialStates();
   };
 

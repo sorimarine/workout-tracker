@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../../auth/auth";
+import { useCurrentUser } from "../../context/CurrentUserContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import "./Landing.css";
 
 const Landing = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  return (
+  const [isAuth, setIsAuth] = useState(null);
+  const { setCurrentUser } = useCurrentUser();
+  useEffect(() => {
+    const setAuth = async () => {
+      setIsAuth(await isAuthenticated(setCurrentUser));
+    };
+    setAuth();
+  }, []);
+
+  return isAuth === null ? (
+    ""
+  ) : isAuth ? (
+    <Navigate to="/" />
+  ) : (
     <main className="landing">
       <h1>Welcome to Workout Tracker</h1>
       <p>Please log in to continue</p>

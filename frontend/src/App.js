@@ -10,6 +10,7 @@ import {
 import Landing from "./pages/Landing/Landing";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { CurrentUserProvider } from "./context/CurrentUserContext";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -17,7 +18,15 @@ const App = () => {
       <CurrentUserProvider>
         <Header />
         <Routes>
-          <Route index element={<Landing />} />
+          <Route index element={<Navigate to="/dashboard" />} />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route path="landing" element={<Landing />} />
           <Route
             path="trackWorkout"
@@ -27,7 +36,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/landing" />} />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       </CurrentUserProvider>
     </Router>

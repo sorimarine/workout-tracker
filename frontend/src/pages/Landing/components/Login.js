@@ -21,7 +21,7 @@ const Login = () => {
         return;
       }
       setCurrentUser(user);
-      nav("/trackWorkout");
+      nav("/");
     } catch (e) {
       alert("Error! can't find user");
     }

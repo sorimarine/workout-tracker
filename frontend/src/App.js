@@ -11,6 +11,7 @@ import Landing from "./pages/Landing/Landing";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { CurrentUserProvider } from "./context/CurrentUserContext";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import WorkoutHistory from "./pages/ViewPastWorkouts/WorkoutHistory";
 
 const App = () => {
   return (
@@ -29,7 +30,15 @@ const App = () => {
           />
           <Route path="landing" element={<Landing />} />
           <Route
-            path="trackWorkout"
+            path="history"
+            element={
+              <ProtectedRoute>
+                <WorkoutHistory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="trackworkout"
             element={
               <ProtectedRoute>
                 <TrackWorkout />

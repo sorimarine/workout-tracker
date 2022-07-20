@@ -1,0 +1,10 @@
+.navBar__list {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.navBar__listItem {
+  list-style-type: none;
+}

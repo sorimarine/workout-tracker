@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import "./Header.css";
+import Navbar from "./components/Navbar";
 
 const Header = () => {
   const nav = useNavigate();
@@ -26,6 +27,7 @@ const Header = () => {
           </span>
         </div>
       )}
+      <Navbar />
     </header>
   ) : (
     ""

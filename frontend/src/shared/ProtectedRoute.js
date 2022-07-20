@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { isAuthenticated } from "../auth/auth";
 import { useCurrentUser } from "../context/CurrentUserContext";
 

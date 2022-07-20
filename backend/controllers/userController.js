@@ -17,18 +17,6 @@ const populateUserData = (user, ...otherKeys) => {
   return userData;
 };
 
-const saveWorkout = async (data, res) => {
-  try {
-    const user = await User.findOne({ username: data.username });
-    user.exerciseList = data.exerciseList;
-    user.workouts.push(data.workout);
-    user.save();
-    res.send(populateUserData(user));
-  } catch (err) {
-    res.status(404).send("error saving workout:", error);
-  }
-};
-
 // login and return user
 const login = async (req, res) => {
   const { username, password } = req.body;
@@ -81,10 +69,54 @@ const authUser = (req, res) => {
   return res.send(user ? { user: populateUserData(user) } : {});
 };
 
+const saveWorkout = async (data, res) => {
+  try {
+    const user = await User.findOne({ username: data.username });
+    user.exerciseList = data.exerciseList;
+    user.workouts.push(data.workout);
+    user.save();
+    res.send(populateUserData(user));
+  } catch (err) {
+    res.status(404).send("error saving workout:", error);
+  }
+};
+
+const compareDates = (dateString1, dateString2) => {
+  const date1 = new Date(dateString1);
+  const date2 = new Date(dateString2);
+  return date1 > date2 ? 1 : date2 > date1 ? -1 : 0;
+};
+
+const getWorkouts = async (req, res) => {
+  const user = req.session?.user;
+  if (!user) {
+    return res.send({ error: "An error occurred" });
+  }
+  const dateRange = req.query.dateRange
+    ? JSON.parse(req.query.dateRange)
+    : null;
+  if (!dateRange?.from || !dateRange?.to) {
+    console.log(dateRange.from, dateRange.to);
+    return res.send({ error: "Please select both from and two date ranges" });
+  }
+  if (compareDates(dateRange.from, dateRange.to) > 0) {
+    return res.send({ error: "From date needs to be before To date" });
+  }
+  const workouts = user.workouts
+    ? user.workouts.filter(
+        (workout) =>
+          compareDates(workout.date, dateRange.from) >= 0 &&
+          compareDates(workout.date, dateRange.to) <= 0
+      )
+    : [];
+  return res.send({ workouts });
+};
+
 module.exports = {
   login,
   saveWorkout,
   register,
   logout,
   authUser,
+  getWorkouts,
 };

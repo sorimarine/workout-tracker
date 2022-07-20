@@ -17,4 +17,7 @@ router.post("/logout", (req, res) => {
 router.get("/authUser", (req, res) => {
   userController.authUser(req, res);
 });
+router.get("/workouts", (req, res) => {
+  userController.getWorkouts(req, res);
+});
 module.exports = router;

@@ -4,11 +4,17 @@ const usernameExists = async (username) => {
   return (await User.countDocuments({ username })) > 0;
 };
 
-const populateUserData = (user) => {
-  return {
+const populateUserData = (user, ...otherKeys) => {
+  const userData = {
     username: user.username,
     exerciseList: user.exerciseList,
   };
+  otherKeys.map((key) => {
+    if (user[key]) {
+      userData[key] = user[key];
+    }
+  });
+  return userData;
 };
 
 const saveWorkout = async (data, res) => {
@@ -35,6 +41,7 @@ const login = async (req, res) => {
       error: "no such username and password combination found",
     });
   }
+  req.session.user = populateUserData(user, "workouts");
   return res.send({ user: populateUserData(user) });
 };
 
@@ -53,6 +60,7 @@ const register = async (req, res) => {
   try {
     const user = new User({ username, password });
     await user.save();
+    req.session.user = populateUserData(user, "workouts");
     return res.send({ user: populateUserData(user) });
   } catch (err) {
     console.log(err);
@@ -63,8 +71,14 @@ const register = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  req.session.destroy();
+  return res.send();
+};
+
 module.exports = {
   login,
   saveWorkout,
   register,
+  logout,
 };

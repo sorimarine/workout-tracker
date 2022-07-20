@@ -11,5 +11,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   userController.login(req, res);
 });
-
+router.post("/logout", (req, res) => {
+  userController.logout(req, res);
+});
 module.exports = router;

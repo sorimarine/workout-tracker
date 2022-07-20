@@ -33,6 +33,7 @@ const Login = () => {
       <div>
         <label htmlFor="username">Username: </label>
         <input
+          type="text"
           id="username"
           placeholder="username"
           value={username}
@@ -43,6 +44,7 @@ const Login = () => {
       <div>
         <label htmlFor="password">Password: </label>
         <input
+          type="password"
           id="password"
           placeholder="password"
           value={password}

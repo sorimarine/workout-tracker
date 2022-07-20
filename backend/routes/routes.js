@@ -14,4 +14,7 @@ router.post("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
   userController.logout(req, res);
 });
+router.get("/authUser", (req, res) => {
+  userController.authUser(req, res);
+});
 module.exports = router;

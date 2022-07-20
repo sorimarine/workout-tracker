@@ -1,13 +1,22 @@
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../auth/auth";
 import { useCurrentUser } from "../context/CurrentUserContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useCurrentUser();
+  const { setCurrentUser } = useCurrentUser();
+  const [isAuth, setIsAuth] = useState(null);
+  useEffect(() => {
+    const setAuth = async () => {
+      setIsAuth(await isAuthenticated(setCurrentUser));
+    };
+    setAuth();
+  }, []);
 
-  if (!currentUser) {
-    return <Navigate to="/landing" />;
-  }
-  return children;
+  // waiting for auth to be set before possibly redirecting
+  if (isAuth === null) return "";
+
+  return isAuth ? children : <Navigate to="/landing" />;
 };
 
 export default ProtectedRoute;

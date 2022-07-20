@@ -76,9 +76,15 @@ const logout = (req, res) => {
   return res.send();
 };
 
+const authUser = (req, res) => {
+  const user = req.session?.user;
+  return res.send(user ? { user: populateUserData(user) } : {});
+};
+
 module.exports = {
   login,
   saveWorkout,
   register,
   logout,
+  authUser,
 };

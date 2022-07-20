@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import "./Header.css";
@@ -9,6 +10,7 @@ const Header = () => {
   const logout = () => {
     setCurrentUser(null);
     nav("/landing");
+    axios.post("/api/logout");
   };
 
   return currentUser ? (

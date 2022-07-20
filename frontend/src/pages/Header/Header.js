@@ -8,10 +8,10 @@ const Header = () => {
   const nav = useNavigate();
   const { currentUser, setCurrentUser } = useCurrentUser();
 
-  const logout = () => {
+  const logout = async () => {
     setCurrentUser(null);
+    await axios.post("/api/logout");
     nav("/landing");
-    axios.post("/api/logout");
   };
 
   return currentUser ? (

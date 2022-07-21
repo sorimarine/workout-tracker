@@ -13,20 +13,20 @@ const SetDisplay = ({ set, onDeleteSet }) => {
   return (
     <span className="setDisplay">
       {showDeleteBtn ? (
-        <div>
-          <button onClick={() => setShowDeleteBtn(false)}>
+        <div className="secondary">
+          <button className="primary" onClick={() => setShowDeleteBtn(false)}>
             <FontAwesomeIcon icon={faUndo} />
           </button>
-          <button>
+          <button className="primary">
             <FontAwesomeIcon icon={faEdit} />
           </button>
-          <button onClick={deleteSet}>
+          <button className="primary" onClick={deleteSet}>
             <FontAwesomeIcon icon={faTrashCan} />
           </button>
         </div>
       ) : (
         <button
-          className="setDisplay__btn"
+          className="setDisplay__btn primary"
           onClick={() => setShowDeleteBtn(true)}
         >
           {set.rep}@{set.weight}lbs

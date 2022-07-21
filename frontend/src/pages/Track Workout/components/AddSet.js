@@ -43,7 +43,9 @@ const AddSet = ({ onSetComplete, w = 0, r = 1 }) => {
       <div className="addSet__container">
         <label htmlFor="weight">weight: </label>
         <div className="addSet__inputDiv">
-          <button onClick={() => adjustWeight(-5)}>-5</button>
+          <button className="primary" onClick={() => adjustWeight(-5)}>
+            -5
+          </button>
           <input
             className="addSet__numberInput"
             id="weight"
@@ -53,11 +55,15 @@ const AddSet = ({ onSetComplete, w = 0, r = 1 }) => {
             max="9999"
             min="0"
           />
-          <button onClick={() => adjustWeight(5)}>+5</button>
+          <button className="primary" onClick={() => adjustWeight(5)}>
+            +5
+          </button>
         </div>
         <label htmlFor="rep">rep: </label>
         <div className="addSet__inputDiv">
-          <button onClick={() => adjustRep(-1)}>-1</button>
+          <button className="primary" onClick={() => adjustRep(-1)}>
+            -1
+          </button>
           <input
             className="addSet__numberInput"
             id="rep"
@@ -68,14 +74,18 @@ const AddSet = ({ onSetComplete, w = 0, r = 1 }) => {
             max="9999"
             onChange={(e) => setRep(e.target.value)}
           />
-          <button onClick={() => adjustRep(1)}>+1</button>
+          <button className="primary" onClick={() => adjustRep(1)}>
+            +1
+          </button>
         </div>
         {inputError && (
           <p>
             <em>{inputError}</em>
           </p>
         )}
-        <button onClick={onSetAdded}>Add</button>
+        <button className="primary" onClick={onSetAdded}>
+          Add
+        </button>
       </div>
     </div>
   );

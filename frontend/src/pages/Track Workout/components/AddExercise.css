@@ -1,13 +1,9 @@
 .addExercise {
-  background-color: #dcd7c9;
-  border-radius: 5px;
-  color: #3f4e4f;
+  margin: 0 5px;
 }
 
 .addExercise button {
   margin: 2px;
-  background-color: #2c3639;
-  color: #dcd7c9;
 }
 
 .addExercise__divider {

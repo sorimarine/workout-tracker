@@ -3,7 +3,7 @@ import "./SetsDisplay.css";
 
 const SetsDisplay = ({ sets, deleteSet }) => {
   return (
-    <div className="setsDisplay">
+    <div className="setsDisplay secondary">
       <h5 className="setsDisplay__header">Sets Completed</h5>
       {sets.map((set, index) => (
         <SetDisplay

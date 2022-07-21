@@ -6,13 +6,19 @@ const Navbar = () => {
     <nav className="navBar">
       <ul className="navBar__list">
         <li className="navBar__listItem">
-          <Link to="/dashboard">Dashboard</Link>
+          <Link className="link_primary" to="/dashboard">
+            Dashboard
+          </Link>
         </li>
         <li className="navBar__listItem">
-          <Link to="/trackworkout">Track Workout</Link>
+          <Link className="link_primary" to="/trackworkout">
+            Track Workout
+          </Link>
         </li>
         <li className="navBar__listItem">
-          <Link to="/history">Workout History</Link>
+          <Link className="link_primary" to="/history">
+            Workout History
+          </Link>
         </li>
       </ul>
     </nav>

@@ -1,8 +1,5 @@
 .exerciseDisplay {
-  background-color: #3f4e4f;
-  color: #dcd7c9;
-  border-radius: 5px;
-  margin: 1px;
+  margin: 1px 5px;
   padding-bottom: 1px;
   min-height: 25px;
 }

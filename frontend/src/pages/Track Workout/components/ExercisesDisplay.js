@@ -13,7 +13,7 @@ const ExercisesDisplay = ({ exercises, updExercises }) => {
     updExercises(updatedExercises);
   };
   return (
-    <section className="exercisesDisplay">
+    <section className="exercisesDisplay secondary">
       <h4 className="exercisesDisplay__header">Exercises Completed</h4>
       {exercises.map((exercise, index) => (
         <ExerciseDisplay

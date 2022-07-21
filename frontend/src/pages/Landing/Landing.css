@@ -1,9 +1,0 @@
-.landing__linkSpan {
-  color: #a27b5c;
-  text-decoration: underline solid;
-}
-
-.landing__linkSpan:hover {
-  cursor: pointer;
-  color: #dcd7c9;
-}

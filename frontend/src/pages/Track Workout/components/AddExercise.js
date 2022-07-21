@@ -47,12 +47,15 @@ const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
   );
 
   return (
-    <section className="addExercise">
+    <section className="addExercise secondary">
       {chosenExercise && <h4>{chosenExercise}</h4>}
       {chosenExercise ? addSetDiv : chooseExerciseDiv}
       <hr />
-      <button onClick={onCancel}>Cancel</button>
+      <button className="primary" onClick={onCancel}>
+        Cancel
+      </button>
       <button
+        className="primary"
         disabled={!sets.length > 0}
         onClick={() => onExerciseComplete({ name: chosenExercise, sets: sets })}
       >

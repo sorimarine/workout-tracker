@@ -9,20 +9,20 @@ const Header = () => {
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const logout = async () => {
-    setCurrentUser(null);
     await axios.post("/api/logout");
     nav("/landing");
+    setCurrentUser(null);
   };
 
   return currentUser ? (
-    <header className="header">
+    <header className="header secondary">
       {currentUser && (
         <div className="header__loggedIn">
           <span className="header__infoSpan">
             logged in as{" "}
             <span className="header__username">{currentUser.username}</span>
           </span>
-          <span className="header__logoutSpan" onClick={logout}>
+          <span className="header__logoutSpan link_primary" onClick={logout}>
             logout
           </span>
         </div>

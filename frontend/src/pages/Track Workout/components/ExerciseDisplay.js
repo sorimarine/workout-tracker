@@ -15,8 +15,11 @@ const ExerciseDisplay = ({ exercise, updExercise }) => {
     updExercise(exercise);
   };
   return exercise.sets.length > 0 ? (
-    <div className="exerciseDisplay">
-      <span className="exerciseDisplay__infoSpan" onClick={displaySets}>
+    <div className="exerciseDisplay primary">
+      <span
+        className="exerciseDisplay__infoSpan clickable"
+        onClick={displaySets}
+      >
         {exercise.name} ({exercise.sets.length} sets)
       </span>
       {showSets && <SetsDisplay sets={exercise.sets} deleteSet={onDelete} />}

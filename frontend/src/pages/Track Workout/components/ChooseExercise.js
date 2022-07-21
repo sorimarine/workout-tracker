@@ -24,6 +24,7 @@ function ChooseExercise({ exerciseList = [], onExerciseChosen }) {
           </p>
         )}
       <button
+        className="primary"
         disabled={!chosenExercise}
         onClick={() => onExerciseChosen(chosenExercise)}
       >

@@ -30,7 +30,7 @@ const Landing = () => {
           <Login />
           <p>Don't have an account?</p>
           <span
-            className="landing__linkSpan"
+            className="link_secondary"
             onClick={() => setShowRegisterForm(true)}
           >
             Register
@@ -41,7 +41,7 @@ const Landing = () => {
           <Register />
           <p>Already have an account?</p>
           <span
-            className="landing__linkSpan"
+            className="link_secondary"
             onClick={() => setShowRegisterForm(false)}
           >
             Login

@@ -1,0 +1,94 @@
+$color1: #222831;
+$color2: #eeeeee;
+$color3: #393e46;
+$color4: #323232;
+$colorError: coral;
+$colorLink: #f67280;
+$clickableHighlight: $colorLink;
+
+html {
+  display: table;
+  margin: auto;
+  width: 100%;
+}
+
+body {
+  text-align: center;
+  min-width: 360px;
+  background-color: $color1;
+  color: $color2;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+select {
+  text-transform: capitalize;
+}
+
+button {
+  background-color: $color2;
+  border-color: $color1;
+  color: $color1;
+  height: 25px;
+  border-width: 0;
+}
+button:hover {
+  border-width: 1px;
+  border-color: $colorLink;
+  cursor: pointer;
+}
+
+a {
+  color: $colorLink;
+}
+
+.errorMsg {
+  color: $colorError;
+  font-style: italic;
+}
+
+.primary {
+  background-color: $color1;
+  color: $color2;
+}
+
+.secondary {
+  background-color: $color2;
+  color: $color1;
+}
+
+.tertiary {
+  background-color: $color3;
+  color: $color2;
+}
+
+.quarternary {
+  background-color: $color4;
+  color: $color2;
+}
+
+.clickable:hover {
+  cursor: pointer;
+  background-color: $clickableHighlight;
+}
+
+.link_primary {
+  color: $color1;
+  text-decoration: underline;
+}
+
+.link_primary:hover {
+  color: $colorLink;
+  cursor: pointer;
+}
+
+.link_secondary {
+  color: $color2;
+  text-decoration: underline;
+}
+
+.link_secondary:hover {
+  color: $colorLink;
+  cursor: pointer;
+}

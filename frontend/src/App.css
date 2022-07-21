@@ -23,6 +23,12 @@ button {
   border-color: #3f4e4f;
   color: #3f4e4f;
   height: 25px;
+  border-width: 0;
+}
+button:hover {
+  border-width: 1px;
+  border-color: skyblue;
+  cursor: pointer;
 }
 
 a {

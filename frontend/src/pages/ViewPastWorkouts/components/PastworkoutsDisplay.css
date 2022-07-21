@@ -1,0 +1,9 @@
+.pastWorkouts {
+  background-color: #dcd7c9;
+  margin: 2px 5px;
+  padding-bottom: 2px;
+}
+
+.pastWorkouts__header {
+  color: #2c3639;
+}

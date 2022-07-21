@@ -28,12 +28,12 @@ button {
 
 button:hover {
   border-width: 1px;
-  border-color: #f67280;
+  border-color: #00adb5;
   cursor: pointer;
 }
 
 a {
-  color: #f67280;
+  color: #00adb5;
 }
 
 .errorMsg {
@@ -63,7 +63,7 @@ a {
 
 .clickable:hover {
   cursor: pointer;
-  background-color: #f67280;
+  background-color: #00adb5;
 }
 
 .link_primary {
@@ -72,7 +72,7 @@ a {
 }
 
 .link_primary:hover {
-  color: #f67280;
+  color: #00adb5;
   cursor: pointer;
 }
 
@@ -82,6 +82,6 @@ a {
 }
 
 .link_secondary:hover {
-  color: #f67280;
+  color: #00adb5;
   cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

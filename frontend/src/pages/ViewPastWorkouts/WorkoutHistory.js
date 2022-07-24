@@ -1,12 +1,22 @@
 import { useState } from "react";
 import axios from "axios";
 import PastWorkoutsDisplay from "./components/PastWorkoutsDisplay";
+import useSessionStorage from "../../hooks/useSessionStorage";
 
 const WorkoutHistory = () => {
-  const [from, setFrom] = useState(new Date().toLocaleDateString("en-CA"));
-  const [to, setTo] = useState(new Date().toLocaleDateString("en-CA"));
+  const [from, setFrom] = useSessionStorage(
+    "workoutHistory_fromDate",
+    new Date().toLocaleDateString("en-CA")
+  );
+  const [to, setTo] = useSessionStorage(
+    "workoutHistory_toDate",
+    new Date().toLocaleDateString("en-CA")
+  );
   const [errorMsg, setErrorMsg] = useState(null);
-  const [workoutsList, setWorkoutsList] = useState([]);
+  const [workoutsList, setWorkoutsList] = useSessionStorage(
+    "workoutHistory_workoutsList",
+    []
+  );
 
   const getWorkouts = async (e) => {
     e.preventDefault();

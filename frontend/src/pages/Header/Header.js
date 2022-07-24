@@ -12,6 +12,7 @@ const Header = () => {
     await axios.post("/api/logout");
     nav("/landing");
     setCurrentUser(null);
+    window.sessionStorage.clear();
   };
 
   return currentUser ? (

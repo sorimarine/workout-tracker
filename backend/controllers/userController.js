@@ -69,15 +69,20 @@ const authUser = (req, res) => {
   return res.send(user ? { user: populateUserData(user) } : {});
 };
 
-const saveWorkout = async (data, res) => {
+const saveWorkout = async (req, res) => {
   try {
-    const user = await User.findOne({ username: data.username });
-    user.exerciseList = data.exerciseList;
-    user.workouts.push(data.workout);
+    // update the workouts and exerciseList info to session
+    // and save it to the database
+    const { username, exerciseList, workout } = req.body;
+    req.session.user.exerciseList = exerciseList;
+    req.session.user.workouts.push(workout);
+    const user = await User.findOne({ username });
+    user.workouts = req.session.user.workouts;
+    user.exerciseList = req.session.user.exerciseList;
     user.save();
-    res.send(populateUserData(user));
+    res.send({ user: populateUserData(user) });
   } catch (err) {
-    res.status(404).send("error saving workout:", error);
+    res.status(404).send("error saving workout:", err);
   }
 };
 

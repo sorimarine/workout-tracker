@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 
 router.post("/saveWorkout", async (req, res) => {
-  userController.saveWorkout(req.body, res);
+  userController.saveWorkout(req, res);
 });
 router.post("/register", async (req, res) => {
   userController.register(req, res);

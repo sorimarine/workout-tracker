@@ -1,14 +1,20 @@
 import { useState } from "react";
 import AddSet from "./AddSet";
 import ChooseExercise from "./ChooseExercise";
-import SetDisplay from "./SetDisplay";
 import "./AddExercise.css";
 import SetsDisplay from "./SetsDisplay";
+import useSessionStorage from "../../../hooks/useSessionStorage";
 
 const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
-  const [showChooseExercise, setShowChooseExercise] = useState(true);
-  const [chosenExercise, setChosenExercise] = useState("");
-  const [sets, setSets] = useState([]);
+  const [showChooseExercise, setShowChooseExercise] = useSessionStorage(
+    "show_choose_exercise",
+    true
+  );
+  const [chosenExercise, setChosenExercise] = useSessionStorage(
+    "chosen_exercise",
+    ""
+  );
+  const [sets, setSets] = useSessionStorage("sets_complete", []);
 
   let prevWeight = 0,
     prevRep = 1;

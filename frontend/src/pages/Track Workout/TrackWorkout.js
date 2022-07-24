@@ -1,15 +1,25 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
+import useSessionStorage from "../../hooks/useSessionStorage";
 import DatePicker from "../../shared/DatePicker";
 import { includesIgnoreCase } from "../../shared/helper";
 import AddExercise from "./components/AddExercise";
 import ExercisesDisplay from "./components/ExercisesDisplay";
 
 function TrackWorkout() {
-  const [showAddExercise, setShowAddExercise] = useState(false);
-  const [exercisesComplete, setExercisesComplete] = useState([]);
-  const [date, setDate] = useState(new Date().toLocaleDateString("en-CA"));
+  const [showAddExercise, setShowAddExercise] = useSessionStorage(
+    "show_add_exercise",
+    false
+  );
+  const [exercisesComplete, setExercisesComplete] = useSessionStorage(
+    "exercises_completed",
+    []
+  );
+  const [date, setDate] = useSessionStorage(
+    "workout_date",
+    new Date().toLocaleDateString("en-CA")
+  );
   const { currentUser, setCurrentUser } = useCurrentUser();
   const [exerciseList, setExerciseList] = useState(currentUser.exerciseList);
 
@@ -27,7 +37,6 @@ function TrackWorkout() {
     if (!includesIgnoreCase(exerciseList, exercise.name)) {
       setExerciseList([...exerciseList, exercise.name]);
     }
-    console.log(exerciseList);
     setShowAddExercise(false);
     setExercisesComplete([...exercisesComplete, exercise]);
   };

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AddSet from "./AddSet";
 import ChooseExercise from "./ChooseExercise";
 import "./AddExercise.css";
@@ -34,6 +33,13 @@ const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
     setSets([...sets.slice(0, setIndex), ...sets.slice(setIndex + 1)]);
   };
 
+  const exerciseCompleteHandler = () => {
+    onExerciseComplete({ name: chosenExercise, sets: sets });
+    setShowChooseExercise(true);
+    setChosenExercise("");
+    setSets([]);
+  };
+
   const chooseExerciseDiv = (
     <div>
       {showChooseExercise && (
@@ -63,7 +69,9 @@ const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
       <button
         className="primary"
         disabled={!sets.length > 0}
-        onClick={() => onExerciseComplete({ name: chosenExercise, sets: sets })}
+        onClick={() =>
+          exerciseCompleteHandler({ name: chosenExercise, sets: sets })
+        }
       >
         Exercise Complete
       </button>

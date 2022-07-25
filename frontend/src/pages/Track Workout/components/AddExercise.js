@@ -40,6 +40,16 @@ const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
     setSets([]);
   };
 
+  const setInitialStates = () => {
+    setShowChooseExercise(true);
+    setChosenExercise("");
+  };
+
+  const cancelHandler = () => {
+    setInitialStates();
+    onCancel();
+  };
+
   const chooseExerciseDiv = (
     <div>
       {showChooseExercise && (
@@ -63,7 +73,7 @@ const AddExercise = ({ onExerciseComplete, onCancel, exerciseList }) => {
       {chosenExercise && <h4>{chosenExercise}</h4>}
       {chosenExercise ? addSetDiv : chooseExerciseDiv}
       <hr />
-      <button className="primary" onClick={onCancel}>
+      <button className="primary" onClick={cancelHandler}>
         Cancel
       </button>
       <button

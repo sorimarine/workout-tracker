@@ -19,18 +19,29 @@ const populateUserData = (user, ...otherKeys) => {
 
 // login and return user
 const login = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.send({ error: "both username and password required" });
-  }
-  const user = await User.findOne({ username });
-  if (!user || user.password !== password) {
-    return res.send({
-      error: "no such username and password combination found",
+  const FAIL_ERR = { error: "no such username and password combination found" };
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.send({ error: "both username and password required" });
+    }
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.send(FAIL_ERR);
+    }
+    user.comparePassword(password, function (err, isMatch) {
+      if (err) throw err;
+
+      if (!isMatch) {
+        return res.send(FAIL_ERR);
+      }
+      req.session.user = populateUserData(user, "workouts");
+      return res.send({ user: populateUserData(user) });
     });
+  } catch (err) {
+    console.log(err);
+    return res.send({ error: "an unexpected error occurred" });
   }
-  req.session.user = populateUserData(user, "workouts");
-  return res.send({ user: populateUserData(user) });
 };
 
 // register and return new user
